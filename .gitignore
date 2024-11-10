@@ -12,3 +12,18 @@
 
 !wofi/
 !wofi/**
+
+!swaync/
+!swaync/**
+
+!tofi/
+!tofi/**
+
+!foot/
+!foot/**
+
+!avizo/
+!avizo/**
+
+!swaylock/
+!swaylock/**

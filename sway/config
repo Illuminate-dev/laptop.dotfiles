@@ -19,7 +19,7 @@ set $term foot
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | wmenu | xargs swaymsg exec --
-set $menu wofi --show run
+set $menu ~/.config/tofi/scripts/drun.sh
 
 set $opacity 0.9
 
@@ -72,6 +72,7 @@ input "6392:3993:USB_OPTICAL_MOUSE" {
 }
 
 ## settings
+smart_gaps on
 gaps inner 10
 
 # opacity $opacity
@@ -92,6 +93,10 @@ for_window [app_id="firefox"] opacity 1.0
 
     # Start your launcher
     bindsym $mod+d exec $menu
+
+    bindsym $mod+p exec ~/.config/tofi/scripts/powermenu.sh
+
+    bindsym $mod+semicolon exec swaylock
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -220,13 +225,13 @@ bindsym $mod+r mode "resize"
 #
 # Volume Control:
 #
-    bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-    bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+    bindsym XF86AudioMute exec volumectl toggle-mute
+    bindsym XF86AudioRaiseVolume exec volumectl up
+    bindsym XF86AudioLowerVolume exec volumectl down
+    bindsym XF86AudioMicMute exec exec volumectl -m toggle-mute
 
-    bindsym XF86MonBrightnessUp exec light 5
-    bindsym XF86MonBrightnessDown exec light -5
+    bindsym XF86MonBrightnessUp exec lightctl up
+    bindsym XF86MonBrightnessDown exec lightctl down 
 
 #
 # Status Bar:
@@ -239,5 +244,7 @@ bar swaybar_command waybar
 #
 
 exec dropbox
+exec swaync
+exec_always "avizo-service"
 
 include /etc/sway/config.d/*
