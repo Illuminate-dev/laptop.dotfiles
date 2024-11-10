@@ -1,0 +1,14 @@
+*
+!.gitignore
+
+!sway/
+!sway/**
+
+!neofetch/
+!neofetch/**
+
+!waybar/
+!waybar/**
+
+!wofi/
+!wofi/**
